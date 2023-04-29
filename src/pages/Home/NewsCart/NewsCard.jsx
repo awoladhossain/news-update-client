@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
-import Rating from 'react-rating';
 import { FaRegStar,FaStar } from "react-icons/fa";
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
+
 
 const NewsCard = ({news}) => {
     const {_id,image_url,title,details,author,total_view,rating} = news;
@@ -34,14 +36,8 @@ const NewsCard = ({news}) => {
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted d-flex">
-        <div className='flex-grow-1'>
-        <Rating
-  placeholderRating={rating?.number}
-  readonly
-  emptySymbol={<FaRegStar/>}
-  placeholderSymbol={<FaStar className='text-warning'></FaStar>}
-  fullSymbol={<FaStar/>}
-/>
+        <div className='flex-grow-1 d-flex'>
+        <Rating style={{ maxWidth: 80 }} value={Math.round(rating?.number || 0)} readOnly />
           <span className='ms-2'>{rating?.number}</span>
         </div>
         <div>
