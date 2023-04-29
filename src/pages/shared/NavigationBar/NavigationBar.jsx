@@ -6,7 +6,14 @@ import { HiUserCircle } from "react-icons/hi";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const NavigationBar = () => {
-    const {user} = useContext(AuthContext);
+    const {user,logOut} = useContext(AuthContext);
+    const handleLogOut=()=>{
+      logOut()
+      .then()
+      .catch((error)=>{
+        console.log(error);
+      })
+    }
     return (
         <Container>
             
@@ -14,7 +21,7 @@ const NavigationBar = () => {
       <Container>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
-              <Link to='/'>Home</Link>
+              <Link to='/catagori/0'>Home</Link>
             
             <Nav.Link href="#pricing">About</Nav.Link>
             <Nav.Link href="#pricing">Carrer</Nav.Link>
@@ -25,7 +32,7 @@ const NavigationBar = () => {
            <HiUserCircle size={30} color="white" />
             }
            {
-           user ? <Button variant="primary">LogOut</Button>:
+           user ? <Button onClick={handleLogOut} variant="primary">LogOut</Button>:
            <Link to ='/login'> <Button variant="primary">Login</Button></Link>
            }
             
